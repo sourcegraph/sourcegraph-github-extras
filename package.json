@@ -1,0 +1,131 @@
+{
+  "name": "github-extras",
+  "publisher": "sourcegraph",
+  "title": "GitHub extras",
+  "description": "WIP: Adds more GitHub integration features to Sourcegraph.",
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "actions": [
+      {
+        "id": "github.openPanel",
+        "command": "openPanel",
+        "commandArguments": [
+          "github.pullRequests"
+        ],
+        "category": "GitHub",
+        "title": "Pull requests",
+        "actionItem": {
+          "label": "Pull requests",
+          "description": "Show GitHub pull requests"
+        }
+      }
+    ],
+    "menus": {
+      "directory/page": [
+        {
+          "action": "github.openPanel",
+          "when": "resource"
+        }
+      ],
+      "commandPalette": [
+        {
+          "action": "github.openPanel",
+          "when": "resource"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "GitHub extras",
+      "properties": {
+        "github.explore.repositories": {
+          "description": "A list of repositories (in `owner/name` format) to display in the Explore area.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^/]+/[^/]+$"
+          },
+          "default":["sourcegraph/sourcegraph"],
+          "examples": [
+            [
+              "facebook/react",
+              "twbs/bootstrap",
+              "sourcegraph/sourcegraph"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "version": "0.0.0-DEVELOPMENT",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sourcegraph/sourcegraph-github-extras.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/sourcegraph-github-extras.js",
+  "scripts": {
+    "prettier": "prettier '**/{*.{js?(on),ts?(x),scss},.*.js?(on)}' --write --list-different",
+    "tslint": "tslint -c tslint.json -p tsconfig.json './src/*.ts?(x)' './*.ts?(x)'",
+    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --require ts-node/register --require source-map-support/register --opts mocha.opts",
+    "cover": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' nyc --require ts-node/register --require source-map-support/register --all mocha --opts mocha.opts --timeout 10000",
+    "build": "parcel build --no-minify --out-file sourcegraph-github-extras.js src/extension.ts",
+    "serve": "parcel serve --no-hmr --out-file sourcegraph-github-extras.js src/extension.ts",
+    "sourcegraph:prepublish": "yarn run build"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts?(x)"
+    ],
+    "exclude": [
+      "**/*.test.ts?(x)"
+    ],
+    "extension": [
+      ".tsx",
+      ".ts"
+    ]
+  },
+  "browserslist": [
+    "last 1 Chrome versions",
+    "last 1 Firefox versions",
+    "last 1 Edge versions",
+    "last 1 Safari versions"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.1",
+    "@sourcegraph/prettierrc": "^2.2.0",
+    "@sourcegraph/tsconfig": "^3.0.0",
+    "@sourcegraph/tslint-config": "^12.0.0",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.7.1",
+    "husky": "^1.1.2",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "parcel-bundler": "^1.9.7",
+    "prettier": "^1.14.2",
+    "source-map-support": "^0.5.9",
+    "sourcegraph": "^18.4.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
+  },
+  "dependencies": {
+    "date-fns": "^2.0.0-alpha.25",
+    "rxjs": "^6.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  }
+}
