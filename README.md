@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/sourcegraph/sourcegraph-github-extras/branch/master/graph/badge.svg?token=c3KpMf1MaY)](https://codecov.io/gh/sourcegraph/sourcegraph-github-extras)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-A [Sourcegraph extension](https://github.com/sourcegraph/sourcegraph-extension-api) that adds more GitHub integration features to [Sourcegraph](https://sourcegraph.com).
+A [Sourcegraph extension](https://docs.sourcegraph.com/extensions) that adds more GitHub integration features to [Sourcegraph](https://sourcegraph.com).
 
 - **GitHub: Pull requests**: see a table of GitHub pull requests for the current repository
 
