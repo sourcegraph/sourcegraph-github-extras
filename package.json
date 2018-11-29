@@ -22,6 +22,12 @@
         }
       }
     ],
+    "searchFilters": [
+      {
+        "name": "type:issue",
+        "value": "type:issue"
+      }
+    ],
     "menus": {
       "directory/page": [
         {
@@ -45,7 +51,9 @@
             "type": "string",
             "pattern": "^[^/]+/[^/]+$"
           },
-          "default":["sourcegraph/sourcegraph"],
+          "default": [
+            "sourcegraph/sourcegraph"
+          ],
           "examples": [
             [
               "facebook/react",
