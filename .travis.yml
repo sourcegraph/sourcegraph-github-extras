@@ -1,8 +1,6 @@
 language: node_js
-node_js: '10'
-cache:
-  directories:
-    - ~/.npm
+node_js: '11'
+cache: yarn
 env:
   global:
     - FORCE_COLOR=1
@@ -10,12 +8,10 @@ jobs:
   include:
     - stage: test
       script:
-        - npm run prettier
-        - npm run tslint
-        - npm run build
-        - npm test
-        - npm run cover
-        - nyc report --reporter json
+        - yarn run prettier
+        - yarn run tslint
+        - yarn run build
+        - yarn test
         - 'bash <(curl -s https://codecov.io/bash)'
 stages:
   - test

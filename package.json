@@ -1,8 +1,7 @@
 {
   "name": "github-extras",
   "publisher": "sourcegraph",
-  "title": "GitHub extras",
-  "description": "WIP: Adds more GitHub integration features to Sourcegraph.",
+  "description": "Adds more GitHub integration features to Sourcegraph",
   "activationEvents": [
     "*"
   ],
@@ -20,12 +19,6 @@
           "label": "Pull requests",
           "description": "Show GitHub pull requests"
         }
-      }
-    ],
-    "searchFilters": [
-      {
-        "name": "type:issue",
-        "value": "type:issue"
       }
     ],
     "menus": {
@@ -66,7 +59,7 @@
     }
   },
   "version": "0.0.0-DEVELOPMENT",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/sourcegraph/sourcegraph-github-extras.git"
@@ -74,14 +67,13 @@
   "files": [
     "dist"
   ],
-  "main": "dist/sourcegraph-github-extras.js",
+  "main": "dist/extension.js",
   "scripts": {
-    "prettier": "prettier '**/{*.{js?(on),ts?(x),scss},.*.js?(on)}' --write --list-different",
-    "tslint": "tslint -c tslint.json -p tsconfig.json './src/*.ts?(x)' './*.ts?(x)'",
-    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --require ts-node/register --require source-map-support/register --opts mocha.opts",
-    "cover": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' nyc --require ts-node/register --require source-map-support/register --all mocha --opts mocha.opts --timeout 10000",
-    "build": "parcel build --no-minify --out-file sourcegraph-github-extras.js src/extension.ts",
-    "serve": "parcel serve --no-hmr --out-file sourcegraph-github-extras.js src/extension.ts",
+    "prettier": "prettier '**/{*.{js?(on),tss},.*.js?(on)}' --write --list-different",
+    "tslint": "tslint -c tslint.json -p tsconfig.json './src/*.ts' './*.ts'",
+    "test": "jest",
+    "build": "parcel build --no-minify --out-file extension.js src/extension.ts",
+    "serve": "parcel serve --no-hmr --out-file extension.js src/extension.ts",
     "sourcegraph:prepublish": "yarn run build"
   },
   "commitlint": {
@@ -91,13 +83,12 @@
   },
   "nyc": {
     "include": [
-      "src/**/*.ts?(x)"
+      "src/**/*.ts"
     ],
     "exclude": [
-      "**/*.test.ts?(x)"
+      "**/*.test.ts"
     ],
     "extension": [
-      ".tsx",
       ".ts"
     ]
   },
@@ -108,31 +99,51 @@
     "last 1 Safari versions"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^7.0.0",
-    "@commitlint/config-conventional": "^7.0.1",
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
     "@sourcegraph/prettierrc": "^2.2.0",
-    "@sourcegraph/tsconfig": "^3.0.0",
-    "@sourcegraph/tslint-config": "^12.0.0",
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.7.1",
+    "@sourcegraph/tsconfig": "^4.0.0",
+    "@sourcegraph/tslint-config": "^12.3.1",
+    "@types/jest": "^24.0.11",
     "husky": "^1.1.2",
-    "mocha": "^5.2.0",
-    "nyc": "^13.1.0",
-    "parcel-bundler": "^1.9.7",
+    "jest": "^24.5.0",
+    "parcel-bundler": "^1.12.3",
     "prettier": "^1.14.2",
     "source-map-support": "^0.5.9",
-    "sourcegraph": "^18.4.0",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "typescript": "^3.0.1"
+    "sourcegraph": "^23.0.0",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.4000"
   },
   "dependencies": {
     "date-fns": "^2.0.0-alpha.25",
-    "rxjs": "^6.3.2"
+    "rxjs": "^6.4.0"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "<rootDir>/coverage",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ],
+    "preset": "ts-jest/presets/js-with-ts",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.[jt]s$": "ts-jest"
+    },
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text-summary"
+    ]
   }
 }
