@@ -1,5 +1,14 @@
 # sourcegraph-github-extras
 
+## ⚠️ Deprecation notice
+
+**Sourcegraph extensions have been deprecated with the September 2022 Sourcegraph
+release. [Learn more](https://docs.sourcegraph.com/extensions/deprecation).**
+
+The repo and the docs below are kept to support older Sourcegraph versions.
+
+## Description
+
 [![build](https://travis-ci.org/sourcegraph/sourcegraph-github-extras.svg?branch=master)](https://travis-ci.org/sourcegraph/sourcegraph-github-extras)
 [![codecov](https://codecov.io/gh/sourcegraph/sourcegraph-github-extras/branch/master/graph/badge.svg?token=c3KpMf1MaY)](https://codecov.io/gh/sourcegraph/sourcegraph-github-extras)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
